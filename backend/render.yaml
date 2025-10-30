@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: task-manager-api
+    env: dotnet
+    plan: free
+    buildCommand: dotnet build -c Release
+    startCommand: dotnet run --configuration Release
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:8080
