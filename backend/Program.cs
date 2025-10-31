@@ -11,7 +11,7 @@ using ProjectManagerAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure port for deployment
+// ✅ DEPLOYMENT FIX: Configure port from environment variable
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
@@ -84,17 +84,23 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-// Add CORS
+// ✅ DEPLOYMENT FIX: Enhanced CORS for Render + Vercel
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.SetIsOriginAllowedToAllowWildcardSubdomains()
+        policy
             .WithOrigins(
                 "http://localhost:5173",
                 "http://localhost:3000",
+                "http://127.0.0.1:5173",
+                "http://127.0.0.1:3000"
+            )
+            .SetIsOriginAllowedToAllowWildcardSubdomains()
+            .WithOrigins(
                 "https://*.vercel.app",
-                "https://*.netlify.app"
+                "https://*.netlify.app",
+                "https://*.onrender.com"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -104,11 +110,25 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Create database
+// ✅ DEPLOYMENT FIX: Create database on startup
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Database.EnsureCreated();
+        Console.WriteLine("✅ Database initialized successfully");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"❌ Database initialization error: {ex.Message}");
+    }
+}
+
+// ✅ DEPLOYMENT FIX: Use HTTPS only in production
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
 }
 
 // Configure HTTP request pipeline
@@ -559,21 +579,43 @@ app.MapDelete("/api/tasks/{id:int}", async (int id, ClaimsPrincipal user, AppDbC
 .WithTags("Tasks")
 .Produces(StatusCodes.Status204NoContent);
 
-// Health check
+// ✅ DEPLOYMENT FIX: Health check endpoint for Render
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "healthy",
+    timestamp = DateTime.UtcNow,
+    environment = app.Environment.EnvironmentName
+}))
+.WithName("Health")
+.WithTags("Health")
+.Produces(StatusCodes.Status200OK);
+
+// Root endpoint
 app.MapGet("/", () => Results.Ok(new
 {
     message = "Project Manager API",
     version = "1.0.0",
+    environment = app.Environment.EnvironmentName,
+    port = port,
     endpoints = new
     {
         swagger = "/swagger",
+        health = "/health",
         auth = "/api/auth",
         projects = "/api/projects",
         tasks = "/api/projects/{projectId}/tasks"
     }
-}));
+}))
+.WithName("Root")
+.WithTags("Info")
+.Produces(StatusCodes.Status200OK);
 
-Console.WriteLine("🚀 Project Manager API is running!");
-Console.WriteLine($"📍 Swagger: http://localhost:{port}/swagger");
+Console.WriteLine("═══════════════════════════════════════════════════════════");
+Console.WriteLine($"🚀 Project Manager API is running!");
+Console.WriteLine($"📍 Environment: {app.Environment.EnvironmentName}");
+Console.WriteLine($"🔌 Port: {port}");
+Console.WriteLine($"📊 Swagger: http://localhost:{port}/swagger");
+Console.WriteLine($"💚 Health: http://localhost:{port}/health");
+Console.WriteLine("═══════════════════════════════════════════════════════════");
 
 app.Run();
