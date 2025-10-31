@@ -1,0 +1,11 @@
+bin
+obj
+.git
+.gitignore
+.vscode
+.vs
+*.db
+*.db-shm
+*.db-wal
+node_modules
+npm-debug.log
