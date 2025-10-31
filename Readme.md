@@ -1,1 +1,364 @@
-📋 Task Manager - Mini Project Manager\n\nA full-stack task management application with AI-powered assistant bot, built with React, TypeScript, and .NET.\n\n![Demo](https://img.shields.io/badge/Status/✅ User Authentication - Secure login & registration with password validation ✅ Project Management - Create, read, update, and delete projects ✅ Task Management - Organize tasks within projects with due dates and times ✅ Progress Tracking - Visual progress bars and completion statistics ✅ AI Assistant Bot - Chat-based task creation and project management automation ✅ Dark/Light Theme - Toggle between light and dark modes ✅ Account Menu - View profile, stats, and logout ✅ Eye Icon Password Toggle - Show/hide passwords during registration ✅ Password Strength Indicator - Real-time password validation ✅ Engaging Greetings - Rotating greeting messages for better UX ✅ Responsive Design - Works seamlessly on desktop and mobile devices ✅ Real-time Updates - Instant task and project status changes\n\n---\n\n## 📦 Tech Stack\n\n### Frontend\n\n- React 18 - Modern UI Library with Hooks - TypeScript - Static type checking for JavaScript - React Router v6 - Client-side routing and navigation - Tailwind CSS - Utility-first CSS framework - Axios - Promise-based HTTP client - Lucide React - Beautiful SVG icon library - Vite - Next-generation frontend build tool\n\n### Backend\n\n- .NET 8 - Modern web framework - Entity Framework Core - Object-Relational Mapper (ORM) - SQLite - Lightweight database - JWT (JSON Web Tokens) - Secure authentication - CORS - Cross-origin request handling\n\n---\n\n## 🛠️ Installation\n\n### Prerequisites\n\n- Node.js v16+ & npm - .NET 8 SDK (Download) - Git\n\n### Frontend Setup\n\n1. Navigate to frontend directory: cd frontend 2. Install dependencies: npm install 3. Create .env.local file: VITE_API_URL=http://localhost:5000 4. Start development server: npm run dev - The app will be available at http://localhost:5173\n\n### Backend Setup\n\n1. Navigate to backend directory: cd backend 2. Restore dependencies: dotnet restore 3. Run the server: dotnet run - The API will be available at http://localhost:5000\n\n---\n\n## 📚 Project Structure\n\nHome-Assignment-2-Mini-Project-Manager/ ├── frontend/ (React + TypeScript frontend) │ ├── src/ │ │ ├── components/ (Reusable React components) │ │ ├── pages/ (Page components) │ │ ├── services/ (API integration with Axios) │ │ ├── context/ (React Context for state management) │ │ ├── types/ (TypeScript type definitions) │ │ ├── App.tsx (Main app component) │ │ └── main.tsx (Entry point) │ ├── public/ (Static assets) │ ├── package.json (Dependencies) │ ├── tsconfig.json (TypeScript config) │ ├── vite.config.ts (Vite config) │ └── tailwind.config.js (Tailwind CSS config) ├── backend/ (.NET API) │ ├── Models/ (Data models) │ ├── DTOs/ (Data Transfer Objects) │ ├── Services/ (Business logic) │ ├── Data/ (Database context) │ ├── Program.cs (Application startup) │ ├── ProjectManagerAPI.csproj (Project file) │ └── projectmanager.db (SQLite database) └── README.md (This file)\n\n---\n\n## 🔌 API Endpoints\n\n### Authentication: POST /auth/register Register new user | POST /auth/login Login user\n\n### Projects: GET /projects Get all projects | GET /projects/{id} Get project by ID | POST /projects Create new project | PUT /projects/{id} Update project | DELETE /projects/{id} Delete project\n\n### Tasks: GET /projects/{projectId}/tasks Get all tasks for project | POST /projects/{projectId}/tasks Create task | PUT /tasks/{taskId} Update task | PATCH /tasks/{taskId}/toggle Toggle task completion | DELETE /tasks/{taskId} Delete task\n\n---\n\n## 🔐 Authentication\n\nThe application uses JWT (JSON Web Tokens) for secure authentication. 1. User registers with email and password 2. Backend validates and stores password securely 3. On login, backend generates JWT token 4. Token is stored in localStorage 5. All API requests include token in Authorization header 6. Token is automatically included via Axios interceptor. Token Storage: localStorage.setItem(\"token\", data.token); localStorage.setItem(\"user\", JSON.stringify(data.user));\n\n---\n\n## 🎨 UI/UX Features\n\n### Responsive Design\n- Desktop-optimized layout with full features - Mobile-friendly card-based views - Touch-friendly buttons and inputs\n\n### Visual Feedback\n- Loading spinners during API calls - Error messages with dismiss button - Success confirmations for actions - Smooth animations and transitions\n\n### Accessibility\n- Semantic HTML structure - ARIA labels on interactive elements - Keyboard navigation support - Color contrast compliance\n\n---\n\n## 🚀 Deployment\n\n### Frontend (Vercel): 1. Push code to GitHub: git add . && git commit -m \"Deploy to Vercel\" && git push origin main 2. Connect to Vercel: Go to vercel.com → Connect your GitHub repository → Add environment variable: VITE_API_URL=<backend-url> → Deploy\n\n### Backend (Render): 1. Create Dockerfile (already included) 2. Connect to Render: Go to render.com → Create new Web Service → Connect GitHub repository → Deploy\n\n---\n\n## 📝 Environment Variables\n\n### Frontend (.env.local): VITE_API_URL=http://localhost:5000\n\n### Frontend (Production): VITE_API_URL=https://your-backend-url.com\n\n---\n\n## 🧪 Build & Run\n\n### Development Mode\n\nFrontend: cd frontend && npm run dev Backend: cd backend && dotnet run\n\n### Production Build\n\nFrontend: cd frontend && npm run build && npm run preview Backend: cd backend && dotnet publish -c Release\n\n---\n\n## 🐛 Troubleshooting\n\n### Issue: Backend API not reachable - Solution: Check backend is running on port 5000, Verify .env.local has correct VITE_API_URL, Check browser console for CORS errors\n\n### Issue: Login fails - Solution: Verify email and password are correct, Check backend database is initialized, Clear localStorage and retry\n\n### Issue: Tasks not loading - Solution: Check network tab in DevTools, Verify JWT token in localStorage, Restart backend and clear browser cache\n\n---\n\n## 📖 Usage Guide\n\n### Creating a Project: 1. Click "+ New Project" on dashboard 2. Enter project name and description 3. Click "Create"\n\n### Creating a Task: 1. Open a project 2. Click "+ New Task" button 3. Enter task title and optional due date/time 4. Click "Create"\n\n### Completing a Task: 1. Check the checkbox next to task 2. Task will be marked as completed 3. Progress bar updates automatically\n\n### Using AI Assistant Bot: 1. Click the assistant bot icon (bottom right) 2. Type commands like: "Create a task called Design UI" or "Create a project called Website" 3. Bot will execute actions automatically\n\n---\n\n## 🔄 Database Schema\n\n### Users Table: Id (PK) | Email (Unique) | PasswordHash | Name | CreatedAt\n\n### Projects Table: Id (PK) | UserId (FK) | Name | Description | CreatedAt | UpdatedAt\n\n### Tasks Table: Id (PK) | ProjectId (FK) | Title | Description | Status (todo, in-progress, completed) | DueDate | CreatedAt | UpdatedAt\n\n---\n\n## 🤝 Contributing\n\n1. Fork the repository 2. Create a feature branch (git checkout -b feature/AmazingFeature) 3. Commit changes (git commit -m 'Add AmazingFeature') 4. Push to branch (git push origin feature/AmazingFeature) 5. Open a Pull Request\n\n---\n\n## 📄 License\n\nThis project is licensed under the MIT License - see the LICENSE file for details.\n\n---\n\n## 👨‍💻 Author\n\nHarshit Kumar - GitHub: @Harshitkumargit\n\n---\n\n## 📧 Support\n\nFor support, email support@example.com or open an issue on GitHub.\n\n---\n\n## 🎯 Roadmap\n\n- [ ] Dark mode persistence - [ ] Task filtering and sorting - [ ] Subtasks support - [ ] Task comments and collaboration - [ ] Calendar view - [ ] Notifications - [ ] Export to PDF - [ ] Team collaboration features\n\n---\n\n## 📚 Learning Resources\n\n- React Documentation - TypeScript Handbook - .NET Documentation - Tailwind CSS\n\n---\n\n**⭐ If you found this helpful, please give it a star!**
+# 📋 Task Manager - Mini Project Manager
+
+A full-stack task management application with **AI-powered assistant bot**, built using **React**, **TypeScript**, and **.NET**.
+
+---
+
+## ✅ Features
+
+- **User Authentication** – Secure login & registration with password validation  
+- **Project Management** – Create, read, update, and delete projects  
+- **Task Management** – Organize tasks within projects with due dates and times  
+- **Progress Tracking** – Visual progress bars and completion statistics  
+- **AI Assistant Bot** – Chat-based task creation and project automation  
+- **Dark/Light Theme** – Toggle between light and dark modes  
+- **Account Menu** – View profile, stats, and logout  
+- **Eye Icon Password Toggle** – Show/hide passwords during registration  
+- **Password Strength Indicator** – Real-time password validation  
+- **Engaging Greetings** – Rotating greeting messages for better UX  
+- **Responsive Design** – Works seamlessly on desktop and mobile  
+- **Real-time Updates** – Instant task and project status changes  
+
+---
+
+## 📦 Tech Stack
+
+### 🖥️ Frontend
+
+- **React 18** – Modern UI library with Hooks  
+- **TypeScript** – Static type checking for JavaScript  
+- **React Router v6** – Client-side routing  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **Axios** – Promise-based HTTP client  
+- **Lucide React** – Beautiful SVG icon library  
+- **Vite** – Next-generation frontend build tool  
+
+### ⚙️ Backend
+
+- **.NET 8** – Modern web framework  
+- **Entity Framework Core** – ORM for database operations  
+- **SQLite** – Lightweight database  
+- **JWT (JSON Web Tokens)** – Secure authentication  
+- **CORS** – Cross-origin request handling  
+
+---
+
+## 🛠️ Installation
+
+### Prerequisites
+
+- Node.js v16+ & npm  
+- .NET 8 SDK  
+- Git  
+
+---
+
+### ⚡ Frontend Setup
+
+```bash
+cd frontend
+npm install
+Create a .env.local file:
+
+bash
+Copy code
+VITE_API_URL=http://localhost:5000
+Start the development server:
+
+bash
+Copy code
+npm run dev
+App will be available at: http://localhost:5173
+
+⚙️ Backend Setup
+bash
+Copy code
+cd backend
+dotnet restore
+dotnet run
+API will be available at: http://localhost:5000
+
+📚 Project Structure
+graphql
+Copy code
+Home-Assignment-2-Mini-Project-Manager/
+├── frontend/ (React + TypeScript frontend)
+│   ├── src/
+│   │   ├── components/        # Reusable React components
+│   │   ├── pages/             # Page components
+│   │   ├── services/          # API integration with Axios
+│   │   ├── context/           # React Context for state management
+│   │   ├── types/             # TypeScript type definitions
+│   │   ├── App.tsx            # Main app component
+│   │   └── main.tsx           # Entry point
+│   ├── public/                # Static assets
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   └── tailwind.config.js
+│
+├── backend/ (.NET API)
+│   ├── Models/                # Data models
+│   ├── DTOs/                  # Data Transfer Objects
+│   ├── Services/              # Business logic
+│   ├── Data/                  # Database context
+│   ├── Program.cs             # Application startup
+│   ├── ProjectManagerAPI.csproj
+│   └── projectmanager.db      # SQLite database
+│
+└── README.md
+🔌 API Endpoints
+🧾 Authentication
+Method	Endpoint	Description
+POST	/auth/register	Register new user
+POST	/auth/login	Login user
+
+📁 Projects
+Method	Endpoint	Description
+GET	/projects	Get all projects
+GET	/projects/{id}	Get project by ID
+POST	/projects	Create new project
+PUT	/projects/{id}	Update project
+DELETE	/projects/{id}	Delete project
+
+🧩 Tasks
+Method	Endpoint	Description
+GET	/projects/{projectId}/tasks	Get all tasks for project
+POST	/projects/{projectId}/tasks	Create new task
+PUT	/tasks/{taskId}	Update task
+PATCH	/tasks/{taskId}/toggle	Toggle completion
+DELETE	/tasks/{taskId}	Delete task
+
+🔐 Authentication Flow
+User registers with email and password
+
+Backend validates and securely hashes password
+
+On login, backend issues JWT token
+
+Token stored in localStorage
+
+All API requests include token in Authorization header
+
+js
+Copy code
+localStorage.setItem("token", data.token);
+localStorage.setItem("user", JSON.stringify(data.user));
+🎨 UI/UX Features
+💻 Responsive Design
+Desktop-optimized layout
+
+Mobile-friendly card-based views
+
+Touch-friendly components
+
+⚡ Visual Feedback
+Loading spinners
+
+Error/success notifications
+
+Smooth transitions
+
+♿ Accessibility
+Semantic HTML
+
+ARIA labels
+
+Keyboard navigation
+
+High color contrast
+
+🚀 Deployment
+🌐 Frontend (Vercel)
+Push code to GitHub:
+
+bash
+Copy code
+git add .
+git commit -m "Deploy to Vercel"
+git push origin main
+Go to Vercel
+
+Connect GitHub repository
+
+Add environment variable:
+
+bash
+Copy code
+VITE_API_URL=<backend-url>
+Deploy!
+
+🔧 Backend (Render)
+Ensure Dockerfile exists
+
+Go to Render
+
+Create new Web Service
+
+Connect GitHub repo → Deploy
+
+📝 Environment Variables
+Frontend (.env.local)
+ini
+Copy code
+VITE_API_URL=http://localhost:5000
+Production
+ini
+Copy code
+VITE_API_URL=https://your-backend-url.com
+🧪 Build & Run
+Development Mode
+bash
+Copy code
+# Frontend
+cd frontend && npm run dev
+
+# Backend
+cd backend && dotnet run
+Production Build
+bash
+Copy code
+# Frontend
+cd frontend && npm run build && npm run preview
+
+# Backend
+cd backend && dotnet publish -c Release
+🐛 Troubleshooting
+Issue	Solution
+Backend not reachable	Ensure backend runs on port 5000 & check .env.local
+Login fails	Verify credentials, database init, or clear localStorage
+Tasks not loading	Verify token, restart backend, or clear browser cache
+
+📖 Usage Guide
+Creating a Project
+Click "+ New Project"
+
+Enter name and description
+
+Click Create
+
+Creating a Task
+Open a project
+
+Click "+ New Task"
+
+Enter title & due date/time
+
+Click Create
+
+Completing a Task
+Check the checkbox next to task
+
+Task marked as completed
+
+Progress bar updates automatically
+
+Using AI Assistant Bot
+Click 🤖 icon (bottom right)
+
+Type commands like:
+
+“Create a task called Design UI”
+
+“Create a project called Website”
+
+Bot performs the action instantly
+
+🔄 Database Schema
+Users Table
+
+Column	Type	Description
+Id	PK	Unique user ID
+Email	Text	Unique email
+PasswordHash	Text	Secure hash
+Name	Text	User name
+CreatedAt	DateTime	Timestamp
+
+Projects Table
+
+Column	Type	Description
+Id	PK	Project ID
+UserId	FK	Linked user
+Name	Text	Project name
+Description	Text	Details
+CreatedAt	DateTime	Created timestamp
+UpdatedAt	DateTime	Updated timestamp
+
+Tasks Table
+
+Column	Type	Description
+Id	PK	Task ID
+ProjectId	FK	Parent project
+Title	Text	Task name
+Description	Text	Task details
+Status	Enum	todo/in-progress/completed
+DueDate	DateTime	Optional deadline
+CreatedAt	DateTime	Created timestamp
+UpdatedAt	DateTime	Updated timestamp
+
+🤝 Contributing
+Fork the repository
+
+Create a feature branch:
+
+bash
+Copy code
+git checkout -b feature/AmazingFeature
+Commit changes:
+
+bash
+Copy code
+git commit -m "Add AmazingFeature"
+Push to branch:
+
+bash
+Copy code
+git push origin feature/AmazingFeature
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License – see the LICENSE file for details.
+
+👨‍💻 Author
+Harshit Kumar
+GitHub: @Harshitkumargit
+
+📧 Support
+For support, email: support@example.com
+or open an issue on GitHub.
+
+🎯 Roadmap
+ Dark mode persistence
+
+ Task filtering and sorting
+
+ Subtasks support
+
+ Task comments and collaboration
+
+ Calendar view
+
+ Notifications
+
+ Export to PDF
+
+ Team collaboration features
+
+📚 Learning Resources
+React Documentation
+
+TypeScript Handbook
+
+.NET Documentation
+
+Tailwind CSS
+
+⭐ If you found this helpful, please give it a star!
+
+yaml
+Copy code
+
+---
+
+Would you like me to generate the **GitHub badge section (tech + language shields)** at the top too?  
+That can make your README look even more professional (like top open-source repos).
