@@ -11,10 +11,10 @@ import type {
   UpdateTaskDTO,
 } from "../types";
 
-// ✅ READ FROM ENVIRONMENT OR USE FALLBACK
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+// ✅ USE ACTUAL RENDER URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://task-manager-api-5p1n.onrender.com";
 
-console.log("🔌 API Base URL loaded:", API_BASE_URL);
+console.log("🔌 API Base URL:", API_BASE_URL);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -32,7 +32,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle 401 errors - redirect to login
+// Handle 401 errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
