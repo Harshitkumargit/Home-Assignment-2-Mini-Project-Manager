@@ -126,27 +126,27 @@ dotnet run
 Home-Assignment-2-Mini-Project-Manager/
 ├── frontend/ (React + TypeScript frontend)
 │   ├── src/
-│   │   ├── components/        # Reusable React components
-│   │   ├── pages/             # Page components
-│   │   ├── services/          # API integration with Axios
-│   │   ├── context/           # React Context for state management
-│   │   ├── types/             # TypeScript type definitions
-│   │   ├── App.tsx            # Main app component
-│   │   └── main.tsx           # Entry point
-│   ├── public/                # Static assets
+│   │   ├── components/        
+│   │   ├── pages/             
+│   │   ├── services/          
+│   │   ├── context/           
+│   │   ├── types/             
+│   │   ├── App.tsx            
+│   │   └── main.tsx           
+│   ├── public/                
 │   ├── package.json
 │   ├── tsconfig.json
 │   ├── vite.config.ts
 │   └── tailwind.config.js
 │
 ├── backend/ (.NET API)
-│   ├── Models/                # Data models
-│   ├── DTOs/                  # Data Transfer Objects
-│   ├── Services/              # Business logic
-│   ├── Data/                  # Database context
-│   ├── Program.cs             # Application startup
+│   ├── Models/                
+│   ├── DTOs/                  
+│   ├── Services/              
+│   ├── Data/                  
+│   ├── Program.cs             
 │   ├── ProjectManagerAPI.csproj
-│   └── projectmanager.db      # SQLite database
+│   └── projectmanager.db      
 │
 └── README.md
 🔌 API Endpoints
@@ -222,7 +222,7 @@ All API requests include token in Authorization header
 4. Bot performs the action instantly
 
 ### 🔄 Database Schema
-Users Table
+#### Users Table
 
 Column	Type	Description
 Id	PK	Unique user ID
@@ -231,7 +231,7 @@ PasswordHash	Text	Secure hash
 Name	Text	User name
 CreatedAt	DateTime	Timestamp
 
-Projects Table
+### Projects Table
 
 Column	Type	Description
 Id	PK	Project ID
@@ -241,7 +241,7 @@ Description	Text	Details
 CreatedAt	DateTime	Created timestamp
 UpdatedAt	DateTime	Updated timestamp
 
-Tasks Table
+### Tasks Table
 
 Column	Type	Description
 Id	PK	Task ID
@@ -253,7 +253,7 @@ DueDate	DateTime	Optional deadline
 CreatedAt	DateTime	Created timestamp
 UpdatedAt	DateTime	Updated timestamp
 
-🤝 Contributing
+### 🤝 Contributing
 Fork the repository
 
 Create a feature branch:
