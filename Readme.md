@@ -124,6 +124,7 @@ dotnet run
 ### 📚 Project Structure
 
 Home-Assignment-2-Mini-Project-Manager/
+
 ├── frontend/ (React + TypeScript frontend)
 │   ├── src/
 │   │   ├── components/        
@@ -151,6 +152,7 @@ Home-Assignment-2-Mini-Project-Manager/
 └── README.md
 🔌 API Endpoints
 🧾 Authentication
+
 Method	Endpoint	Description
 POST	/auth/register	Register new user
 POST	/auth/login	Login user
@@ -259,35 +261,31 @@ Fork the repository
 Create a feature branch:
 
 ```bash
-Copy code
 git checkout -b feature/AmazingFeature
 ```
 Commit changes:
 
 ```bash
-Copy code
+
 git commit -m "Add AmazingFeature"
 ```
 Push to branch:
 
 ```bash
-Copy code
+
 git push origin feature/AmazingFeature
 ```
 Open a Pull Request
 
-📄 License
-This project is licensed under the MIT License – see the LICENSE file for details.
-
-👨‍💻 Author
+## 👨‍💻 Author
 Harshit Kumar
 GitHub: @Harshitkumargit
 
-📧 Support
+## 📧 Support
 For support, email: support@example.com
 or open an issue on GitHub.
 
-🎯 Roadmap
+## 🎯 Roadmap
  Dark mode persistence
 
  Task filtering and sorting
@@ -304,7 +302,7 @@ or open an issue on GitHub.
 
  Team collaboration features
 
-📚 Learning Resources
+## 📚 Learning Resources
 React Documentation
 
 TypeScript Handbook
