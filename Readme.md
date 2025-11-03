@@ -70,11 +70,11 @@ Lightweight, mobile friendly, and ready to extend — ideal as a portfolio proje
 
 ## 📸 Screenshots
 
-> Replace these with actual images in `/frontend/public/screenshots/` and update links below.
-
-- Desktop dashboard — `./assets/screenshot-dashboard.png`  
-- Mobile view — `./assets/screenshot-mobile.png`  
-- AI Assistant Modal — `./assets/screenshot-ai-bot.png`
+- Desktop dashboard —   <img width="1885" height="843" alt="Screenshot 2025-11-03 185409" src="https://github.com/user-attachments/assets/b0dace8b-5465-471a-8ac2-005bbfe3bad8" />
+  
+- AI Assistant Modal — ![Uploading Screenshot 2025-11-03 185429.png…](<img width="1827" height="844" alt="Screenshot 2025-11-03 185548" src="https://github.com/user-attachments/assets/d2f10eef-22d9-48e2-9b6b-499eee3f14b9" />
+<img width="1875" height="857" alt="Screenshot 2025-11-03 185429" src="https://github.com/user-attachments/assets/411e824e-890f-43b7-8d3e-fdd25497ad4c" />
+<img width="1872" height="833" alt="Screenshot 2025-11-03 185520" src="https://github.com/user-attachments/assets/084d1514-3012-493e-a18f-414745f61092" />
 
 ---
 
