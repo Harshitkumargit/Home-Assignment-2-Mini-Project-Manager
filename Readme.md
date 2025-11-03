@@ -121,7 +121,7 @@ dotnet restore
 # run the API
 dotnet run
 ```
-###📚 Project Structure
+### 📚 Project Structure
 
 Home-Assignment-2-Mini-Project-Manager/
 ├── frontend/ (React + TypeScript frontend)
