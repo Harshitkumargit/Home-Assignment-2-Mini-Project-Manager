@@ -1,4 +1,4 @@
-# 📋 Task Manager — Mini Project Manager
+# 📋 Task Manager - Mini Project Manager
 
 A full-stack **Task Management** web application with an **AI-powered assistant bot**, built with **React + TypeScript** (frontend) and **.NET 8** (backend).  
 Lightweight, mobile friendly, and ready to extend — ideal as a portfolio project or base for production features.
