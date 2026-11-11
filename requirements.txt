@@ -1,5 +1,5 @@
 ﻿absl-py==2.1.0
-affine==2.4.0    #python3.10
+affine==2.4.0    
 aiofiles==25.1.0
 aiohappyeyeballs==2.3.5
 aiohttp==3.10.2
